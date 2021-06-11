@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenebutton.tscn" type="PackedScene" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.420471
+margin_right = 0.42041
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="scenebutton" parent="." instance=ExtResource( 1 )]
+margin_left = 60.0
+margin_top = 100.0
+margin_right = 360.0
+margin_bottom = 200.0
+scene = "res://World.tscn"
+
+[node name="scenebutton2" parent="." instance=ExtResource( 1 )]
+margin_left = 60.0
+margin_top = 240.0
+margin_right = 360.0
+margin_bottom = 340.0

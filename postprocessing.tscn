@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+fog_color = Color( 0, 0.501961, 1, 1 )
+tonemap_mode = 3
+auto_exposure_min_luma = 0.59
+auto_exposure_max_luma = 1.93
+glow_enabled = true
+glow_intensity = 2.0
+glow_strength = 0.9
+glow_bloom = 0.6
+glow_blend_mode = 1
+glow_hdr_scale = 4.0
+glow_bicubic_upscale = true
+adjustment_enabled = true
+
+[node name="postprocessing" type="WorldEnvironment"]
+environment = SubResource( 1 )

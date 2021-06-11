@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://cam.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1000, 25 )
+
+[node name="cam" type="Camera2D"]
+current = true
+zoom = Vector2( 0.75, 0.75 )
+script = ExtResource( 1 )
+
+[node name="camwall low" type="RigidBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+mode = 1
+
+[node name="camcoll" type="CollisionShape2D" parent="camwall low"]
+position = Vector2( 0, 250 )
+shape = SubResource( 1 )
+
+[node name="camwall high" type="RigidBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+mode = 1
+
+[node name="camcoll" type="CollisionShape2D" parent="camwall high"]
+position = Vector2( 0, -250 )
+shape = SubResource( 1 )

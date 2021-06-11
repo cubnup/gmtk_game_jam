@@ -1,0 +1,150 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://anode.png" type="Texture" id=1]
+[ext_resource path="res://cathode.png" type="Texture" id=2]
+[ext_resource path="res://ano.gd" type="Script" id=3]
+[ext_resource path="res://catho.gd" type="Script" id=4]
+[ext_resource path="res://electro.tres" type="Material" id=5]
+[ext_resource path="res://electro.gd" type="Script" id=6]
+[ext_resource path="res://spark.png" type="Texture" id=7]
+[ext_resource path="res://spark2.png" type="Texture" id=8]
+[ext_resource path="res://charged.png" type="Texture" id=9]
+[ext_resource path="res://uncharged.png" type="Texture" id=10]
+[ext_resource path="res://trail.png" type="Texture" id=11]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 75.0
+
+[sub_resource type="CircleShape2D" id=3]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 1.4, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+angular_velocity = 375.79
+angular_velocity_random = 1.0
+orbit_velocity = 5.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 0.4
+scale_random = 0.2
+scale_curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 1
+emission_sphere_radius = 75.0
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 720.0
+orbit_velocity = 965.72
+orbit_velocity_random = 0.5
+linear_accel = 4.92
+radial_accel = 51.37
+scale = 0.05
+
+[node name="electro" type="Node2D"]
+z_index = 10
+script = ExtResource( 6 )
+
+[node name="ano" type="KinematicBody2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="a_coll" type="CollisionShape2D" parent="ano"]
+shape = SubResource( 1 )
+
+[node name="a_spr" type="Sprite" parent="ano"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+
+[node name="a_area" type="Area2D" parent="ano"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ano/a_area"]
+shape = SubResource( 2 )
+
+[node name="a_trail" type="Particles2D" parent="ano"]
+z_index = -1
+amount = 25
+lifetime = 0.1
+local_coords = false
+process_material = ExtResource( 5 )
+texture = ExtResource( 1 )
+
+[node name="catho" type="KinematicBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 4 )
+
+[node name="c_coll" type="CollisionShape2D" parent="catho"]
+shape = SubResource( 3 )
+
+[node name="c_spr" type="Sprite" parent="catho"]
+visible = false
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="c_area" type="Area2D" parent="catho"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="catho/c_area"]
+position = Vector2( 0.0661507, 0.0417128 )
+shape = SubResource( 2 )
+
+[node name="c_trail" type="Particles2D" parent="catho"]
+z_index = -1
+amount = 25
+lifetime = 0.1
+local_coords = false
+process_material = ExtResource( 5 )
+texture = ExtResource( 11 )
+
+[node name="c_anim" type="AnimatedSprite" parent="catho"]
+scale = Vector2( 0.02, 0.02 )
+frames = SubResource( 8 )
+
+[node name="electricity" type="Particles2D" parent="."]
+z_index = -3
+lifetime = 0.1
+preprocess = 1.0
+fixed_fps = 24
+process_material = SubResource( 4 )
+texture = ExtResource( 7 )
+
+[node name="e_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="e_area"]
+position = Vector2( 0.0661507, 0.0417128 )
+shape = SubResource( 2 )
+
+[node name="field" type="Particles2D" parent="e_area"]
+lifetime = 0.1
+fixed_fps = 12
+local_coords = false
+process_material = SubResource( 7 )
+texture = ExtResource( 8 )
+
+[connection signal="body_entered" from="ano/a_area" to="ano" method="_on_a_area_body_entered"]
+[connection signal="body_exited" from="ano/a_area" to="ano" method="_on_a_area_body_exited"]
+[connection signal="body_entered" from="catho/c_area" to="catho" method="_on_c_area_body_entered"]
+[connection signal="body_exited" from="catho/c_area" to="catho" method="_on_c_area_body_exited"]
+[connection signal="body_entered" from="e_area" to="." method="_on_e_area_body_entered"]
+[connection signal="body_exited" from="e_area" to="." method="_on_e_area_body_exited"]
