@@ -29,9 +29,10 @@ func _process(delta):
 
 
 func _on_e_area_body_entered(body):
-	if vars.conducting: 
-		pass
+	if body.has_method("power"):
+		body.power()
 
 
 func _on_e_area_body_exited(body):
-	pass
+	if body.has_method("unpower"):
+		body.unpower()

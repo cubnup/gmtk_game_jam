@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://electro.tscn" type="PackedScene" id=1]
 [ext_resource path="res://cam.tscn" type="PackedScene" id=2]
 [ext_resource path="res://postprocessing.tscn" type="PackedScene" id=3]
 [ext_resource path="res://bg.png" type="Texture" id=4]
+[ext_resource path="res://doorset.tscn" type="PackedScene" id=5]
+[ext_resource path="res://tap.tscn" type="PackedScene" id=6]
 [ext_resource path="res://block.tscn" type="PackedScene" id=7]
 
 [node name="World" type="Node2D"]
@@ -14,6 +16,8 @@ z_index = -1
 texture = ExtResource( 4 )
 
 [node name="cam" parent="." instance=ExtResource( 2 )]
+minx = -100.0
+maxx = 100.0
 
 [node name="electro" parent="." instance=ExtResource( 1 )]
 
@@ -29,6 +33,22 @@ position = Vector2( 144.507, 5.3775 )
 state = 2
 size = Vector2( 1, 5 )
 
+[node name="block4" parent="." instance=ExtResource( 7 )]
+position = Vector2( -371.815, -19.1007 )
+state = 3
+size = Vector2( 3, 3 )
+
+[node name="block5" parent="." instance=ExtResource( 7 )]
+position = Vector2( -369.815, 117.899 )
+size = Vector2( 3, 3 )
+
 [node name="postprocessing" parent="." instance=ExtResource( 3 )]
 
-[node name="doorset" type="Node2D" parent="."]
+[node name="doorset" parent="." instance=ExtResource( 5 )]
+type = 1
+d_scene = "res://World.tscn"
+doorpos = Vector2( 100, 100 )
+switchpos = Vector2( -400, 50 )
+
+[node name="tap" parent="." instance=ExtResource( 6 )]
+position = Vector2( -377.897, -122.533 )

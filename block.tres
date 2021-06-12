@@ -1,12 +1,13 @@
-[gd_resource type="SpriteFrames" load_steps=4 format=2]
+[gd_resource type="SpriteFrames" load_steps=5 format=2]
 
-[ext_resource path="res://electro2.png" type="Texture" id=1]
-[ext_resource path="res://electro1.png" type="Texture" id=2]
-[ext_resource path="res://electro.png" type="Texture" id=3]
+[ext_resource path="res://block.png" type="Texture" id=1]
+[ext_resource path="res://rblock.png" type="Texture" id=2]
+[ext_resource path="res://bblock.png" type="Texture" id=3]
+[ext_resource path="res://filter.png" type="Texture" id=4]
 
 [resource]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0

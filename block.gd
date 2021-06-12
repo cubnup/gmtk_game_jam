@@ -19,16 +19,35 @@ func _process(delta):
 			set_collision_layer_bit(1,true)
 			set_collision_mask_bit(0,true)
 			set_collision_mask_bit(1,true)
+			
+			set_collision_layer_bit(3,true)
+			set_collision_mask_bit(3,true)
 		1: #ano
 			ani.frame = 1
 			set_collision_layer_bit(0,true)
 			set_collision_layer_bit(1,false)
 			set_collision_mask_bit(0,true)
 			set_collision_mask_bit(1,false)
+			
+			set_collision_layer_bit(3,false)
+			set_collision_mask_bit(3,false)
 		2: #catho
 			ani.frame = 2
 			set_collision_layer_bit(0,false)
 			set_collision_layer_bit(1,true)
 			set_collision_mask_bit(0,false)
 			set_collision_mask_bit(1,true)
+			
+			set_collision_layer_bit(3,false)
+			set_collision_mask_bit(3,false)
+		3:
+			ani.frame = 3
+			set_collision_layer_bit(0,true)
+			set_collision_layer_bit(1,true)
+			set_collision_mask_bit(0,true)
+			set_collision_mask_bit(1,true)
+			
+			set_collision_layer_bit(3,false)
+			set_collision_mask_bit(3,false)
+			
 
